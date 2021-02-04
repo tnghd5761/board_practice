@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import WriteContent from "./components/WriteContent.js"
+import Control from "./components/Control.js"
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      mode:'welcome',
+      selected_content_id:2,  
+      subject:{title:'WEB', sub:'World Wide Web!'}, 
+      welcome:{title:'Welcome', desc:'Hello, React!!'}
+    }
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <header>
+          <h1>Board</h1>
+        </header>
+        <p><strong>welcome!</strong></p>
+        <Control></Control>
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -1,28 +1,42 @@
 import React, {Component} from 'react';
-import WriteContent from "./components/WriteContent.js"
-import Control from "./components/Control.js"
+import WritePage from "./WritePage.js"
+import Home from "./Home.js"
 import './App.css';
+import {
+  Switch, Route, Link, BrowserRouter as Router
+} from "react-router-dom";
+
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mode:'welcome',
-      selected_content_id:2,  
-      subject:{title:'WEB', sub:'World Wide Web!'}, 
-      welcome:{title:'Welcome', desc:'Hello, React!!'}
-    }
+      mode:'welcome'
+      }
   }
 
   render(){
     return (
-      <div className="App">
-        <header>
-          <h1>Board</h1>
-        </header>
-        <p><strong>welcome!</strong></p>
-        <Control></Control>
-      </div>
+      <Router>
+        <div className="App">
+          <ul>
+            <strong>BoardSH</strong>
+            <header>
+              <Link to="/home">
+                <button>home</button>
+              </Link>
+              <Link to="/write">
+                <button>write</button>
+              </Link>
+            </header>
+          </ul>
+
+          <main>
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/write" component={WritePage} />
+          </main>
+        </div>
+      </Router>
     );
   }
 }

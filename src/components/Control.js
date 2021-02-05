@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
 class Control extends Component {
     render(){
-      console.log('Subject render');
       return (
         <ul>
-          <li><a href="/write" onClick={function(e){
-            e.preventDefault();
-            this.props.onChangeMode('write');
-          }.bind(this)}>write</a></li>
+          <li>
+            {/* <Link to="localhost:3000/white">write</Link> */}
+            hello
+          </li>
         </ul>
       );
     }

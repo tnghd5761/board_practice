@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import WritePage from "./WritePage.js"
+import Write from "./Write.js"
 import Home from "./Home.js"
 import './App.css';
 import {
@@ -8,12 +8,6 @@ import {
 
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      mode:'welcome'
-      }
-  }
 
   render(){
     return (
@@ -25,15 +19,14 @@ class App extends Component {
               <Link to="/home">
                 <button>home</button>
               </Link>
-              <Link to="/write">
-                <button>write</button>
-              </Link>
             </header>
           </ul>
 
           <main>
+            <Switch>
               <Route exact path="/home" component={Home} />
-              <Route exact path="/write" component={WritePage} />
+              <Route exact path="/home/write" component={Write} />
+            </Switch>
           </main>
         </div>
       </Router>

@@ -21,7 +21,6 @@ class App extends Component {
               </Link>
             </header>
           </ul>
-
           <main>
             <Switch>
               <Route exact path="/home" component={Home} />

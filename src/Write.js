@@ -11,7 +11,18 @@ function Write({ match }) {
         <header>
           <h3>WritePage</h3>
         </header>
-        <input></input>
+        <tr>
+          <th>member</th>
+          <th><input></input></th>
+        </tr>
+        <tr>
+          <th>title</th>
+          <th><input></input></th>
+        </tr>
+        <tr>
+          <th>content</th>
+          <th><input></input></th>
+        </tr>
         <p><Link to="/home">
          <input type="submit"></input>
         </Link></p>

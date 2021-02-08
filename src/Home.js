@@ -2,15 +2,17 @@ import React, {Component} from 'react';
 import Write from "./Write.js"
 import './App.css';
 import './App.js'
+import TOC from './components/TOC'
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";
 
 function Home({match}) {
-  
+
   return (
       <div className="Home">
         <ul>
+          hello
           <table>
             <thead>
               <tr>
@@ -21,11 +23,9 @@ function Home({match}) {
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
+                <td>board</td>
                 <td>공지사항</td>
-                <td>Administer</td>
-                {/* {num:1, title:'공지사항', member:'Administer'}, */}
-                {/* {num:2, title:'테스트', member:'ssu_hong'} */}
+                <td>administer</td>
               </tr>
               <tr>
                 <td>2</td>

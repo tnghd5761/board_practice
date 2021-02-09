@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import boardList from './boardList';
-//import boardDetail from './boardDetail';
+import boardDetail from './boardDetail';
+import writePage from '../writePage';
+import home from '../App.js';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";
@@ -9,11 +11,14 @@ function boardContent({match}) {
   
   return(
       <ul>
-        <h1>Board Main</h1>
         <Route exact path={match.path}
         component={boardList} />
-        {/* <Route path={`${match.path}/:id`}
-        component={boardDetail} /> */}
+        <Route path={"/writePage"}
+        component={writePage} />
+        <Route path={"/home"}
+        component={home} />
+        <Route path={`${match.path}/:id`}
+        component={boardDetail} />
       </ul>
   );
 }

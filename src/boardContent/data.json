@@ -4,13 +4,13 @@
             "no" : "1",
             "title" : "공지사항",
             "member" : "administer",
-            "main text" : "공지사항입니다."
+            "main_text" : "공지사항입니다."
         },
         {
             "no" : "2",
             "title" : "테스트",
             "member" : "ssu_hong",
-            "main text" : "안녕하세요."
+            "main_text" : "안녕하세요."
         }
     ]
 }

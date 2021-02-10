@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
-import {writing} from './data.json';
+// import {writing} from './data.json';
 import writePage from '../writePage';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";
 
-function boardList({match}) {
-  
+function boardList(props) {
+  const { match, writing } = props;
+
   return(
     <>
       <h2>Board List</h2>
@@ -19,11 +20,11 @@ function boardList({match}) {
             </tr>
           </thead>
           <tbody>
-            {writing.map(({no, title, member}) => (
-                <tr key={no}> 
-                  <td>{no}</td>
-                  <td><Link to={`${match.url}/${no}`}>{title}</Link></td>
-                  <td>{member}</td>
+            {writing.map(user => (
+                <tr key={user.no}> 
+                  <td>{user.no}</td>
+                  <td><Link to={`${match.url}/${user.no}`}>{user.title}</Link></td>
+                  <td>{user.member}</td>
                 </tr>
             ))}
 

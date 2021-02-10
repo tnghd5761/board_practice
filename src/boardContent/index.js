@@ -7,7 +7,7 @@ import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";
 
-function boardContent({match}) {
+function boardContent({match}, props) {
   
   return(
       <ul>

@@ -1,78 +1,43 @@
 import React, {Component} from 'react';
-import boardContent from "./boardContent";
-import boardList from "./boardContent/boardList";
-import writePage from "./writePage";
-import {writing} from "./boardContent/data.json";
 import './App.css';
+import Register from './register.js';
+import MainPage from './MainPage.js';
 import {
   Switch, Route, Link, BrowserRouter as Router
-} from "react-router-dom";
+} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core';
 
-class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      member : "",
-      title : "",
-      t_main : "",
-      writing : writing
-    };
+const useStyles = makeStyles(theme => ({
+  margin: {
+    margin: theme.spacing(1),
   }
-  memberChangeHandler = e => {
-    this.setState({
-      member: e.target.value
-    });
-  };
-  titleChangeHandler = e => {
-    this.setState({
-      title: e.target.value
-    });
-  };
-  tmainChangeHandler = e => {
-    this.setState({
-      t_main: e.target.value
-    });
-  };
-  onSubmitHandler = () => {
-    const newArr = this.state.writing.concat({
-      no : this.state.writing.length + 1,
-      member : this.state.member,
-      title : this.state.title,
-      t_main : this.state.t_main
-    });
-    this.setState({writing : newArr});
-  };
-  
-  render(){
-    return (
-      <Router>
-        <div className="App">
-          <boardList writing={this.state.writing}/>
-          <ul>
-            <strong>BoardSH</strong>
-            <header>
-              <Link to="/writing">
-                <button>board list</button>
-              </Link>
-            </header>
+}));
+
+function App() {
+  const classes = useStyles();
+  return (
+    <Router>
+      <div>
+        <body>
+            <ul>
+            <h2>Home Page</h2>
+            <div></div>
+            <Button variant="contained" color="primary" className={classes.margin}>
+              Hello
+            </Button>
+            <Link to="./register">
+              <Button variant="contained" color="secondary" className={classes.margin}>
+                Register</Button>
+            </Link>
           </ul>
-          <main>
-            <Switch>
-              <Route path="/writing" component={boardContent} />
-              <Route path="/writePage" component={writePage} />
-            </Switch>
-            <writePage
-              onMemberChange={this.memberChangeHandler}
-              onTitleChange={this.titleChangeHandler}
-              onTmainChange={this.tmainChangeHandler}
-              newMemeber={this.state.member}
-              newTitle={this.state.title}
-              newTmain={this.state.t_main}
-            />
-          </main>
-        </div>
-      </Router>
-    );
-  }
+        </body>
+      </div>
+
+      <Route exact path='/' component={MainPage}/>
+      <Route path='/register' component={Register}/>
+    </Router>
+  );
 }
+
 export default App;

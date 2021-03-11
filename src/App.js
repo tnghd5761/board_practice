@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Register from './register.js';
+import BoardPage from './BoardPage.js';
 import MainPage from './MainPage.js';
 import {
   Switch, Route, Link, BrowserRouter as Router
@@ -21,21 +22,19 @@ function App() {
       <div>
         <body>
             <ul>
-            <h2>Home Page</h2>
-            <div></div>
-            <Button variant="contained" color="primary" className={classes.margin}>
-              Hello
-            </Button>
-            <Link to="./register">
-              <Button variant="contained" color="secondary" className={classes.margin}>
-                Register</Button>
-            </Link>
+            <Link to="./">
+              <Button variant="contained" color="primary" className={classes.margin}>
+                Home</Button>
+              </Link>
+              <div></div>
+            
           </ul>
         </body>
       </div>
 
       <Route exact path='/' component={MainPage}/>
       <Route path='/register' component={Register}/>
+      <Route path='/BoardPage' component={BoardPage}/>
     </Router>
   );
 }

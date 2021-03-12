@@ -9,6 +9,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
+import BoardContent from './BoardContent.js';
+import BoardData from './data.json';
 
 const usStyles = makeStyles(theme => ({
   margin: {
@@ -24,12 +26,19 @@ function BoardPage() {
           <ul>
           <h2>BoardPage</h2>
           <Table>
-            <TableRow>
-              <TableCell>번호</TableCell>
-              <TableCell>제목</TableCell>
-              <TableCell>작성자</TableCell>
-              <TableCell>조회수</TableCell>
-            </TableRow>
+            <TableHead>
+              <TableRow>
+                <TableCell>번호</TableCell>
+                <TableCell>제목</TableCell>
+                <TableCell>작성자</TableCell>
+                <TableCell>조회수</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {BoardData.map(c => {
+                return <BoardContent key = {c.number} number={c.number} title={c.title} member={c.member} views={c.views}/>
+              })}
+            </TableBody>
           </Table>
           <Button variant="contained" color="primary" className={classes.margin}>
             Write

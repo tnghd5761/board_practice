@@ -18,8 +18,9 @@ const usStyles = makeStyles(theme => ({
   }
 }));
 
-function BoardPage() {
+function BoardPage({match}) {
   const classes = usStyles();
+  
   return (
     <div>
       <body>

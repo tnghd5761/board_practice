@@ -3,6 +3,7 @@ import './App.css';
 import Register from './register.js';
 import BoardPage from './BoardPage.js';
 import MainPage from './MainPage.js';
+import InnerText from './InnerText.js';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from 'react-router-dom';
@@ -22,7 +23,7 @@ function App() {
       <div>
         <body>
             <ul>
-            <Link to="./">
+            <Link to="/">
               <Button variant="contained" color="primary" className={classes.margin}>
                 Home</Button>
               </Link>
@@ -35,6 +36,7 @@ function App() {
       <Route exact path='/' component={MainPage}/>
       <Route path='/register' component={Register}/>
       <Route path='/BoardPage' component={BoardPage}/>
+      <Route exact path='/inner/:no' component={InnerText}/>
     </Router>
   );
 }

@@ -30,9 +30,6 @@ function InnerText({history, location, match}) {
                 </TableBody>
               </Table>
               <p>{BoardData[no-1].mainText}</p>
-              {/* <Button variant="contained" color="primary" className={classes.margin}>
-                Write
-              </Button> */}
             </ul>
           </body>
         </div>

@@ -22,9 +22,18 @@ function BoardPage({match}) {
   const classes = usStyles();
   
   return (
-    <div>
+    <Switch>
       <body>
-          <ul>
+        <ul>
+          <Link to="/BoardPage">
+            <Button variant="contained" color="primary" className={classes.margin}>
+              Home</Button>
+          </Link>
+          <Link to='/'>
+            <Button variant="contained" color="secondary" className={classes.margin}>
+                Log out
+            </Button>
+          </Link>
           <h2>BoardPage</h2>
           <Table>
             <TableHead>
@@ -41,12 +50,13 @@ function BoardPage({match}) {
               })}
             </TableBody>
           </Table>
-          <Button variant="contained" color="primary" className={classes.margin}>
-            Write
-          </Button>
+          <Link to='/WritePage'>
+            <Button variant="contained" color="primary" className={classes.margin}>
+              Write</Button>
+          </Link>
         </ul>
       </body>
-    </div>
+    </Switch>
   );
 }
 

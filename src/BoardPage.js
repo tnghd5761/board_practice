@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";
@@ -10,7 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
 import BoardContent from './BoardContent.js';
-import BoardData from './data.json';
+import axios from 'axios';
 
 const usStyles = makeStyles(theme => ({
   margin: {
@@ -18,9 +18,18 @@ const usStyles = makeStyles(theme => ({
   }
 }));
 
-function BoardPage({match}) {
+function BoardPage() {
   const classes = usStyles();
-  
+  const [info, setInfo] = useState([]);
+
+  const checkInfo = async () => {
+    const response = await axios.get('/data.json');
+    setInfo(response.data);
+  }
+  useEffect(() => {
+    checkInfo();
+  }, []);
+
   return (
     <Switch>
       <body>
@@ -45,7 +54,7 @@ function BoardPage({match}) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {BoardData.map(c => {
+              {info.map(c => {
                 return <BoardContent key = {c.number} number={c.number} title={c.title} member={c.member} views={c.views}/>
               })}
             </TableBody>

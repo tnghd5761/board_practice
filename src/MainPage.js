@@ -5,9 +5,6 @@ import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";
 import Button from '@material-ui/core/Button';
-// import Table from '@material-ui/core/Table';
-// import TableRow from '@material-ui/core/TableRow';
-// import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({

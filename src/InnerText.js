@@ -4,10 +4,20 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import BoardData from './data.json';
+import axios from 'axios';
 
 function InnerText({history, location, match}) {
     const { no } = match.params;
+    const [info, setInfo] = useState([]);
+
+    const checkInfo = async () => {
+      const response = await axios.get('/data.json');
+      setInfo(response.data);
+    }
+    useEffect(() => {
+      checkInfo();
+    }, []);
+
     return (
         <div>
           <body>
@@ -23,13 +33,13 @@ function InnerText({history, location, match}) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                    <TableCell>{BoardData[no-1].number}</TableCell>
-                    <TableCell>{BoardData[no-1].title}</TableCell>
-                    <TableCell>{BoardData[no-1].member}</TableCell>
-                    <TableCell>{BoardData[no-1].views}</TableCell>
+                    <TableCell>{info[no-1].number}</TableCell>
+                    <TableCell>{info[no-1].title}</TableCell>
+                    <TableCell>{info[no-1].member}</TableCell>
+                    <TableCell>{info[no-1].views}</TableCell>
                 </TableBody>
               </Table>
-              <p>{BoardData[no-1].mainText}</p>
+              <p>{info[no-1].mainText}</p>
             </ul>
           </body>
         </div>

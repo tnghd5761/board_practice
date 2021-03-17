@@ -2,13 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {
     Switch, Route, Link, BrowserRouter as Router
   } from "react-router-dom";
-import Table from '@material-ui/core/Table';
-import TableHead from '@material-ui/core/TableHead';
-import TableBody from '@material-ui/core/TableBody';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core';
+import axios from 'axios';
 
 const usStyles = makeStyles(theme => ({
   margin: {
@@ -18,6 +14,15 @@ const usStyles = makeStyles(theme => ({
 
 function InnerText() {
     const classes = usStyles();
+    const [info, setInfo] = useState([]);
+
+    const checkInfo = async () => {
+      const response = await axios.get('/data.json');
+      setInfo(response.data);
+    }
+    useEffect(() => {
+      checkInfo();
+    }, []);
 
     return (
         <Switch>
@@ -32,8 +37,12 @@ function InnerText() {
                 <div></div>
               </div>
               <Link to='/BoardPage'>
-                <Button variant="contained" color="primary" className={classes.margin}>
-                    Submit</Button>
+                <Button
+                  variant="contained" color="primary" className={classes.margin}
+                  onClick={function(e){
+                    console.log(info);
+                    e.preventDefault();
+                  }.bind(this)}>Submit</Button>
               </Link>
             </ul>
           </body>

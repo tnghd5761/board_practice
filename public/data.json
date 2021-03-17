@@ -1,0 +1,16 @@
+[
+    {
+        "number" : 1,
+        "member" : "administer",
+        "title" : "공지사항입니다.",
+        "mainText" : "첫 번째 게시글입니다.",
+        "views" : 2
+    },
+    {
+        "number" : 2,
+        "member" : "ssu_hong",
+        "title" : "안녕하세요.",
+        "mainText" : "만나서 반갑습니당!!!",
+        "views" : 1
+    }
+]

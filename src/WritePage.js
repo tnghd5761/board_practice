@@ -28,6 +28,10 @@ function InnerText() {
         <Switch>
           <body>
               <ul>
+              <Link to="/BoardPage">
+                <Button variant="contained" color="primary" className={classes.margin}>
+                  Home</Button>
+              </Link>
               <h2>Write</h2>
               <div>
                 <span>제목 : </span>

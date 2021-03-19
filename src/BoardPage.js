@@ -29,6 +29,12 @@ function BoardPage() {
   useEffect(() => {
     checkInfo();
   }, []);
+  const addInfo = async () => {
+    axios.put('/data.json', {
+      number:'3',
+      member:'admin'
+    }); 
+  }
 
   return (
     <Switch>
@@ -63,6 +69,12 @@ function BoardPage() {
             <Button variant="contained" color="primary" className={classes.margin}>
               Write</Button>
           </Link>
+          <Button
+            variant="contained" color="primary" className={classes.margin}
+            onClick={function(e){
+              e.preventDefault();
+              addInfo();
+            }.bind(this)}>Submit</Button>
         </ul>
       </body>
     </Switch>

@@ -21,19 +21,26 @@ const usStyles = makeStyles(theme => ({
 function BoardPage() {
   const classes = usStyles();
   const [info, setInfo] = useState([]);
+  const infoURL = "http://localhost:3000/dummy/data.json";
 
   const checkInfo = async () => {
-    const response = await axios.get('/data.json');
+    const response = await axios.get('/dummy/data.json');
     setInfo(response.data);
   }
   useEffect(() => {
     checkInfo();
   }, []);
   const addInfo = async () => {
-    axios.put('/data.json', {
-      number:'3',
-      member:'admin'
-    }); 
+    const info2 = [
+      {
+        number : 3,
+        member : "administer",
+        title : "두 번째 공지입니다.",
+        mainText : "세 번째 게시글입니다.",
+        views : 0
+      }
+    ];
+    const newInfo = await axios.put(infoURL, info.concat(info2)); 
   }
 
   return (

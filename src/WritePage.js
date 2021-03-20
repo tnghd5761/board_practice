@@ -17,7 +17,7 @@ function InnerText() {
     const [info, setInfo] = useState([]);
 
     const checkInfo = async () => {
-      const response = await axios.get('/data.json');
+      const response = await axios.get('/dummy/data.json');
       setInfo(response.data);
     }
     useEffect(() => {

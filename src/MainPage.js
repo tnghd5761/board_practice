@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function MainPage({authenticated, login, location}) {
+function MainPage({authenticated, login, logout, user, setUser, location}) {
   const classes = useStyles();
   const [member, setMember] = useState("");
   const [password, setPassword] = useState("");
@@ -64,10 +64,8 @@ function MainPage({authenticated, login, location}) {
                 </td>
               </tr>
             </table>
-            {/* <Link to="/BoardPage"> */}
-              <Button variant="contained" color="primary" onClick={handleClick}>
-                log in</Button>
-            {/* </Link> */}
+            <Button variant="contained" color="primary" onClick={handleClick}>
+              log in</Button>
             <Link to="/register">
               <Button variant="contained" color="secondary" className={classes.margin}>
                 Register</Button>

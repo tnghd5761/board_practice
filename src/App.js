@@ -8,20 +8,12 @@ import WritePage from './WritePage.js';
 import Profile from './Profile.js';
 import {signIn} from './auth.js';
 import AuthRoute from './AuthRoute.js';
+import Logout from './Logout.js';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core';
-
-const useStyles = makeStyles(theme => ({
-  margin: {
-    margin: theme.spacing(1),
-  }
-}));
 
 function App() {
-  const classes = useStyles();
   const [user, setUser] = useState(null);
   const authenticated = user != null;
 
@@ -44,7 +36,12 @@ function App() {
         )}
       />
       <Route path='/register' component={Register}/>
-      <Route path='/BoardPage' component={BoardPage}/>
+      <Route
+        path='/BoardPage'
+        render={props => (
+          <BoardPage logout={logout}/>
+        )}
+      />
       <Route exact path='/inner/:no' component={InnerText}/>
       <Route path='/WritePage' component={WritePage}/>
       <Route path='/profile' component={Profile}/>

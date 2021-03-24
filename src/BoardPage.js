@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
 import BoardContent from './BoardContent.js';
+import Logout from './Logout.js';
 import axios from 'axios';
 
 const usStyles = makeStyles(theme => ({
@@ -18,7 +19,7 @@ const usStyles = makeStyles(theme => ({
   }
 }));
 
-function BoardPage() {
+function BoardPage({logout}) {
   const classes = usStyles();
   const [info, setInfo] = useState([]);
   const infoURL = "http://localhost:3000/dummy/data.json";
@@ -51,11 +52,7 @@ function BoardPage() {
             <Button variant="contained" color="primary" className={classes.margin}>
               Home</Button>
           </Link>
-          <Link to='/'>
-            <Button variant="contained" color="secondary" className={classes.margin}>
-                Log out
-            </Button>
-          </Link>
+          <Logout logout={logout}/>
           <h2>BoardPage</h2>
           <Table>
             <TableHead>

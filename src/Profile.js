@@ -28,12 +28,12 @@ function Profile({user}) {
             <table>
               <tr>
                 <td>아이디</td>
-                <td><html>&nbsp;</html></td>
+                <td><html>:&nbsp;</html></td>
                 <td>{member}</td>
               </tr>
               <tr>
                 <td>비밀번호</td>
-                <td><html>&nbsp;</html></td>
+                <td><html>:&nbsp;</html></td>
                 <td>{password}</td>
               </tr>
             </table>

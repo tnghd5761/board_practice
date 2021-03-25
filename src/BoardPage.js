@@ -52,6 +52,10 @@ function BoardPage({logout}) {
             <Button variant="contained" color="primary" className={classes.margin}>
               Home</Button>
           </Link>
+          <Link to="/profile">
+            <Button variant="contained" color="primary" className={classes.margin}>
+              Profile</Button>
+          </Link>
           <Logout logout={logout}/>
           <h2>BoardPage</h2>
           <Table>

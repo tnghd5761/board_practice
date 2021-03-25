@@ -28,28 +28,28 @@ function App() {
           </ul>
         </body>
       </div>
-
-      <Route
-        exact path='/'
-        render={props => (
-          <MainPage authenticated={authenticated} login={login} {...props}/>
-        )}
-      />
-      <Route path='/register' component={Register}/>
-      <Route
-        path='/BoardPage'
-        render={props => (
-          <BoardPage logout={logout}/>
-        )}
-      />
-      <Route exact path='/inner/:no' component={InnerText}/>
-      <Route path='/WritePage' component={WritePage}/>
-      <Route path='/profile' component={Profile}/>
-      <AuthRoute
-        authenticated={authenticated}
-        path="/profile"
-        render={props => <Profile user={user} {...props}/>}
-      />
+      <Switch>
+        <Route
+          exact path='/'
+          render={props => (
+            <MainPage authenticated={authenticated} login={login} {...props}/>
+          )}
+        />
+        <Route path='/register' component={Register}/>
+        <Route
+          path='/BoardPage'
+          render={props => (
+            <BoardPage logout={logout}/>
+          )}
+        />
+        <Route exact path='/inner/:no' component={InnerText}/>
+        <Route path='/WritePage' component={WritePage}/>
+        <AuthRoute
+          authenticated={authenticated}
+          path="/profile"
+          render={props => <Profile user={user} {...props}/>}
+        />
+      </Switch>
     </Router>
   );
 }

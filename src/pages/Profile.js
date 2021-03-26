@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 
 function Profile({user}) {
   const classes = useStyles();
-  const { member, password } = user || {}
+  const { member, password, name } = user || {}
   return (
     <Switch>
       <div>
@@ -35,6 +35,11 @@ function Profile({user}) {
                 <td>비밀번호</td>
                 <td><html>:&nbsp;</html></td>
                 <td>{password}</td>
+              </tr>
+              <tr>
+                <td>이름</td>
+                <td><html>:&nbsp;</html></td>
+                <td>{name}</td>
               </tr>
             </table>
           </ul>

@@ -9,8 +9,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
-import BoardContent from './BoardContent.js';
-import Logout from './Logout.js';
+import BoardContent from '../components/BoardContent.js';
+import Logout from '../components/Logout.js';
 import axios from 'axios';
 
 const usStyles = makeStyles(theme => ({
@@ -25,24 +25,12 @@ function BoardPage({logout}) {
   const infoURL = "http://localhost:3000/dummy/data.json";
 
   const checkInfo = async () => {
-    const response = await axios.get('/dummy/data.json');
+    const response = await axios.get(infoURL);
     setInfo(response.data);
   }
   useEffect(() => {
     checkInfo();
   }, []);
-  const addInfo = async () => {
-    const info2 = [
-      {
-        number : 3,
-        member : "administer",
-        title : "두 번째 공지입니다.",
-        mainText : "세 번째 게시글입니다.",
-        views : 0
-      }
-    ];
-    const newInfo = await axios.put(infoURL, info.concat(info2)); 
-  }
 
   return (
     <Switch>
@@ -81,7 +69,6 @@ function BoardPage({logout}) {
             variant="contained" color="primary" className={classes.margin}
             onClick={function(e){
               e.preventDefault();
-              addInfo();
             }.bind(this)}>Submit</Button>
         </ul>
       </body>

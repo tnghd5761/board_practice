@@ -1,0 +1,10 @@
+[
+    {
+        "member" : "administer",
+        "password" : "helloworld",
+        "name" : "관리자" },
+    {
+        "member" : "ssu_hong",
+        "password" : "123456",
+        "name" : "Suhong"}
+]

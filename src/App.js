@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import './App.css';
-import Register from './register.js';
-import BoardPage from './BoardPage.js';
-import MainPage from './MainPage.js';
-import InnerText from './InnerText.js';
-import WritePage from './WritePage.js';
-import Profile from './Profile.js';
-import {signIn} from './auth.js';
-import AuthRoute from './AuthRoute.js';
-import Logout from './Logout.js';
+import Register from './pages/register.js';
+import BoardPage from './pages/BoardPage.js';
+import MainPage from './pages/MainPage.js';
+import InnerText from './pages/InnerText.js';
+import WritePage from './pages/WritePage.js';
+import Profile from './pages/Profile.js';
+import {signIn} from './components/auth.js';
+import AuthRoute from './components/AuthRoute.js';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from 'react-router-dom';

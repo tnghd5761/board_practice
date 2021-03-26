@@ -6,14 +6,13 @@ import {
 } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core';
-
+import axios from 'axios';
 const useStyles = makeStyles(theme => ({
   margin: {
     margin: theme.spacing(1),
   }
 }));
-
-function MainPage({authenticated, login, logout, user, setUser, location}) {
+function MainPage({authenticated, login, location}) {
   const classes = useStyles();
   const [member, setMember] = useState("");
   const [password, setPassword] = useState("");

@@ -1,5 +1,4 @@
 import React from 'react';
-import InnerText from './InnerText.js';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";

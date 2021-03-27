@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {
   Switch, Route, Link, BrowserRouter as Router
 } from "react-router-dom";
@@ -7,7 +7,7 @@ import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
-import {signUp} from '../components/auth.js';
+import MainPage from './MainPage';
 
 const usStyles = makeStyles(theme => ({
   margin: {
@@ -15,11 +15,17 @@ const usStyles = makeStyles(theme => ({
   }
 }));
 
-function register() {
+function Register({members, setMembers}) {
   const classes = usStyles();
-  const newid = "newId";
-  const newpw = "newPw";
-  const newname = "newName";
+
+  const [member, setMember] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+
+  const handleClick = () => {
+    const newMember = {member : member, password : password, name : name};
+    setMembers(members.concat(newMember));
+  }
   return (
     <Switch>
       <div>
@@ -29,26 +35,48 @@ function register() {
             <Table>
               <TableRow>
                 <TableCell>아이디</TableCell>
-                <TableCell><input type="text" name="user_id"></input></TableCell>
+                <TableCell>
+                  <input
+                    value={member}
+                    onChange={({target:{value}}) => setMember(value)}
+                    type="text"
+                    placeholder="member"
+                  />
+                </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>비밀번호</TableCell>
-                <TableCell><input type="text" name="user_pw"></input></TableCell>
+                <TableCell>
+                  <input
+                    value={password}
+                    onChange={({target:{value}}) => setPassword(value)}
+                    type="text"
+                    placeholder="password"
+                  />
+                </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell>이름</TableCell>
-                <TableCell><input type="text" name="user_name"></input></TableCell>
+                <TableCell>
+                  <input
+                    value={name}
+                    onChange={({target:{value}}) => setName(value)}
+                    type="text"
+                    placeholder="name"
+                  />
+                </TableCell>
               </TableRow>
             </Table>
-            <Button variant="contained" color="primary" className={classes.margin}
-              onClick={function(e){
-                signUp({newid, newpw, newname})
-              }.bind(this)}>Submit</Button>
+            <Link to="/">
+              <Button variant="contained" color="primary" className={classes.margin}
+                onClick={handleClick}>Submit</Button>
+            </Link>
           </ul>
         </body>
       </div>
+      <Route path='/' component={MainPage}/>
     </Switch>
   );
 }
 
-export default register;
+export default Register;

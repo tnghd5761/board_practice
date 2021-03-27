@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
-import Register from './pages/register.js';
+import axios from 'axios';
+import Register from './pages/Register.js';
 import BoardPage from './pages/BoardPage.js';
 import MainPage from './pages/MainPage.js';
 import InnerText from './pages/InnerText.js';
@@ -13,10 +14,19 @@ import {
 } from 'react-router-dom';
 
 function App() {
+  const [members, setMembers] = useState([]);
+  const checkMembers = async () => {
+    const response = await axios.get("http://localhost:3000/dummy/userinfo.json");
+    setMembers(response.data);
+  }
+  useEffect(() => {
+    checkMembers();
+  }, []);
+
   const [user, setUser] = useState(null);
   const authenticated = user != null;
 
-  const login = ({ member, password}) => setUser(signIn({ member, password}));
+  const login = ({ member, password}) => setUser(signIn({members, member, password}));
   const logout = () => setUser(null);
 
   return (
@@ -34,11 +44,16 @@ function App() {
             <MainPage authenticated={authenticated} login={login} {...props}/>
           )}
         />
-        <Route path='/register' component={Register}/>
+        <Route
+          path='/register'
+          render={props => (
+            <Register members={members} setMembers={setMembers} {...props}/>
+          )}
+        />
         <Route
           path='/BoardPage'
           render={props => (
-            <BoardPage logout={logout}/>
+            <BoardPage logout={logout} {...props}/>
           )}
         />
         <Route exact path='/inner/:no' component={InnerText}/>

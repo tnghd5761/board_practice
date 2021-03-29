@@ -9,7 +9,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
-import axios from 'axios';
 
 const usStyles = makeStyles(theme => ({
   margin: {
@@ -17,18 +16,10 @@ const usStyles = makeStyles(theme => ({
   }
 }));
 
-function InnerText({history, location, match}) {
+function InnerText({contents, setContents, history, location, match}) {
   const classes = usStyles();
   const { no } = match.params;
-  const [info, setInfo] = useState([]);
-
-  const checkInfo = async () => {
-    const res = await axios.get('/dummy/data.json');
-    setInfo(res.data);
-  }
-  useEffect(() => {
-    checkInfo();
-  }, []);
+  
 
   return (
       <Switch>
@@ -48,7 +39,7 @@ function InnerText({history, location, match}) {
                   <TableCell>조회수</TableCell>
                 </TableRow>
               </TableHead>
-              {info.slice((no-1), no).map(c => {
+              {contents.slice((no-1), no).map(c => {
                 return (
                   <TableBody key = {c.number}>
                     <TableCell>{c.number}</TableCell>
@@ -59,7 +50,7 @@ function InnerText({history, location, match}) {
                 )
               })}
             </Table>
-            {info.slice((no-1), no).map(c => {
+            {contents.slice((no-1), no).map(c => {
               return <p key = {c.number}>{c.mainText}</p>
             })}
           </ul>

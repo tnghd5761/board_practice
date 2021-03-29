@@ -11,7 +11,6 @@ import TableCell from '@material-ui/core/TableCell';
 import { makeStyles } from '@material-ui/core';
 import BoardContent from '../components/BoardContent.js';
 import Logout from '../components/Logout.js';
-import axios from 'axios';
 
 const usStyles = makeStyles(theme => ({
   margin: {
@@ -19,18 +18,8 @@ const usStyles = makeStyles(theme => ({
   }
 }));
 
-function BoardPage({logout}) {
+function BoardPage({logout , contents, setContents}) {
   const classes = usStyles();
-  const [info, setInfo] = useState([]);
-  const infoURL = "http://localhost:3000/dummy/data.json";
-
-  const checkInfo = async () => {
-    const response = await axios.get(infoURL);
-    setInfo(response.data);
-  }
-  useEffect(() => {
-    checkInfo();
-  }, []);
 
   return (
     <Switch>
@@ -56,8 +45,14 @@ function BoardPage({logout}) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {info.map(c => {
-                return <BoardContent key = {c.number} number={c.number} title={c.title} member={c.member} views={c.views}/>
+              {contents.map(c => {
+                return <BoardContent
+                  key = {c.number}
+                  number={c.number}
+                  title={c.title}
+                  member={c.member}
+                  views={c.views}
+                  contents={contents} setContents={setContents}/>
               })}
             </TableBody>
           </Table>
@@ -65,11 +60,6 @@ function BoardPage({logout}) {
             <Button variant="contained" color="primary" className={classes.margin}>
               Write</Button>
           </Link>
-          <Button
-            variant="contained" color="primary" className={classes.margin}
-            onClick={function(e){
-              e.preventDefault();
-            }.bind(this)}>Submit</Button>
         </ul>
       </body>
     </Switch>

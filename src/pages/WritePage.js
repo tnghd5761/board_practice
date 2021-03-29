@@ -12,18 +12,22 @@ const usStyles = makeStyles(theme => ({
   }
 }));
 
-function InnerText() {
+function WritePage({contents, setContents, user}) {
     const classes = usStyles();
-    const [info, setInfo] = useState([]);
 
-    const checkInfo = async () => {
-      const response = await axios.get('/dummy/data.json');
-      setInfo(response.data);
+    const [title, setTitle] = useState("");
+    const [mainText, setMaintext] = useState("");
+    
+    const handleClick = () => {
+      const newContent = {
+        number : contents.length+1,
+        member : user.member,
+        title : title,
+        mainText : mainText,
+        views : 0
+      };
+      setContents(contents.concat(newContent));
     }
-    useEffect(() => {
-      checkInfo();
-    }, []);
-
     return (
         <Switch>
           <body>
@@ -35,18 +39,25 @@ function InnerText() {
               <h2>Write</h2>
               <div>
                 <span>제목 : </span>
-                <input type="text"></input>
+                <input
+                    value={title}
+                    onChange={({target:{value}}) => setTitle(value)}
+                    type="text"
+                    placeholder="title"
+                  />
                 <p>내용</p>
-                <input type="text"></input>
+                <input
+                    value={mainText}
+                    onChange={({target:{value}}) => setMaintext(value)}
+                    type="text"
+                    placeholder="mainText"
+                  />
                 <div></div>
               </div>
               <Link to='/BoardPage'>
                 <Button
                   variant="contained" color="primary" className={classes.margin}
-                  onClick={function(e){
-                    console.log(info);
-                    e.preventDefault();
-                  }.bind(this)}>Submit</Button>
+                  onClick={handleClick}>Submit</Button>
               </Link>
             </ul>
           </body>
@@ -54,4 +65,4 @@ function InnerText() {
     );
 }
 
-export default InnerText;
+export default WritePage;

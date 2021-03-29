@@ -14,6 +14,8 @@ import {
 } from 'react-router-dom';
 
 function App() {
+  // const [conNum, setConNum] = useState(2);
+
   const [members, setMembers] = useState([]);
   const checkMembers = async () => {
     const response = await axios.get("http://localhost:3000/dummy/userinfo.json");
@@ -23,10 +25,19 @@ function App() {
     checkMembers();
   }, []);
 
+  const [contents, setContents] = useState([]);
+  const checkContents = async () => {
+    const response = await axios.get("http://localhost:3000/dummy/data.json");
+    setContents(response.data);
+  }
+  useEffect(() => {
+    checkContents();
+  }, []);
+
   const [user, setUser] = useState(null);
   const authenticated = user != null;
 
-  const login = ({ member, password}) => setUser(signIn({members, member, password}));
+  const login = ({ member, password }) => setUser(signIn({members, member, password}));
   const logout = () => setUser(null);
 
   return (
@@ -53,11 +64,21 @@ function App() {
         <Route
           path='/BoardPage'
           render={props => (
-            <BoardPage logout={logout} {...props}/>
+            <BoardPage logout={logout} contents={contents} setContents={setContents} {...props}/>
           )}
         />
-        <Route exact path='/inner/:no' component={InnerText}/>
-        <Route path='/WritePage' component={WritePage}/>
+        <Route
+          exact path='/inner/:no'
+          render={props => (
+            <InnerText contents={contents} setContents={setContents} {...props}/>
+          )}
+        />
+        <Route
+          exact path='/WritePage'
+          render={props => (
+            <WritePage contents={contents} setContents={setContents} user={user}{...props}/>
+          )}
+        />
         <AuthRoute
           authenticated={authenticated}
           path="/profile"

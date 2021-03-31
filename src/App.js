@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import TestCompo from './TestCompo.js';
 import './App.css';
 import axios from 'axios';
 import Register from './pages/Register.js';
@@ -14,7 +15,6 @@ import {
 } from 'react-router-dom';
 
 function App() {
-  // const [conNum, setConNum] = useState(2);
 
   const [members, setMembers] = useState([]);
   const checkMembers = async () => {
@@ -45,6 +45,7 @@ function App() {
       <div>
         <body>
           <ul>
+            <TestCompo/>
           </ul>
         </body>
       </div>
